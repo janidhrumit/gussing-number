@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Guess Game</title>
+
+<style>
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#1d2671,#c33764);
+font-family:Arial, Helvetica, sans-serif;
+color:white;
+margin:0;
+}
+
+.card{
+background:rgba(255,255,255,0.1);
+padding:30px;
+border-radius:20px;
+text-align:center;
+backdrop-filter:blur(15px);
+box-shadow:0 0 30px rgba(0,0,0,0.4);
+width:90%;
+max-width:400px;
+}
+
+h2{
+margin-bottom:15px;
+}
+
+input{
+padding:10px;
+width:70%;
+border:none;
+border-radius:10px;
+margin-top:10px;
+font-size:16px;
+text-align:center;
+}
+
+button{
+padding:10px 18px;
+margin-top:15px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+font-weight:bold;
+background:linear-gradient(45deg,#00c853,#64dd17);
+color:black;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+#message{
+margin-top:15px;
+font-size:16px;
+}
+
+#attempts{
+margin-top:10px;
+font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+<h2>🎯 Number Guess Game</h2>
+<p>Guess a number between 1 and 100</p>
+
+<input type="number" id="guessInput" placeholder="Enter your guess">
+<br>
+<button onclick="checkGuess()">Submit</button>
+
+<div id="message"></div>
+<div id="attempts"></div>
+</div>
+
+<script>
+let randomNumber = Math.floor(Math.random() * 100) + 1;
+let guesses = 0;
+
+function checkGuess(){
+let userGuess = Number(document.getElementById("guessInput").value);
+
+if(!userGuess) return;
+
+guesses++;
+
+if(userGuess > randomNumber){
+document.getElementById("message").innerText = "⬇ Lower number please";
+}
+else if(userGuess < randomNumber){
+document.getElementById("message").innerText = "⬆ Higher number please";
+}
+else{
+document.getElementById("message").innerHTML = 
+"✅ You guessed the number " + randomNumber + " correctly!";
+document.getElementById("attempts").innerText = 
+"You took " + guesses + " attempts.";
+}
+}
+</script>
+
+</body>
+</html>
